@@ -6,6 +6,9 @@
   "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
   "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
+let cardsFlipped = [];
+let card = [];
+let flippedCount = [];
 
 /*
  * Display the cards on the page
@@ -29,6 +32,16 @@ function shuffle(array) {
     return array;
 }
 
+// Shuffle and display cards on deck to start the game.
+
+let shuffleDeck = shuffle(cardDeck);
+let deck = document.querySelector("deck");
+
+function gameInit () {
+  for (let i = 0; i < shuffleDeck.length; i++)
+  deck.appendChild(shuffleDeck[i])
+  shuffleDeck[i].classList.remove('show', 'open', 'match', 'disabled')
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
