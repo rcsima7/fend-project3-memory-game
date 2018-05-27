@@ -49,6 +49,13 @@ for (let i=0; i < cardDeck.length; i++) {
   cardDeck[i].addEeventListener('click', showCard);
 };
 
+// Display the cards on the page
+let showCard = function (){
+  this.classlist.toggle('open');
+  this.classlist.toggle('show');
+  this.classlist.toggle('disabled');
+}
+
 // Start game when page is reloaded
 
 window.onload = gameInit();
