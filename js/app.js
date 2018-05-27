@@ -7,8 +7,9 @@
   "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
 let cardsFlipped = [];
-let card = [];
+let card = document.getElementsByClassName('card');
 let flippedCount = [];
+
 
 /*
  * Display the cards on the page
@@ -42,6 +43,11 @@ function gameInit () {
   deck.appendChild(shuffleDeck[i])
   shuffleDeck[i].classList.remove('show', 'open', 'match', 'disabled')
 }
+
+// Loop through each card to add event listeners
+for (let i=0; i < cardDeck.length; i++) {
+  cardDeck[i].addEeventListener('click', showCard);
+};
 
 // Start game when page is reloaded
 
