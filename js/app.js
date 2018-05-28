@@ -14,11 +14,18 @@ let flippedCount = [];
 const cardsParent = document.querySelector('.deck');
 
 // Build the cards
-for (let i=0; 1 < shapes.length; i++) {
+for (let i = 0; 1 < shapes.length; i++) {
   const card = document.createElement ('div');
   card.classList.add('card'); //Choose a parent to insert these classes into: cardsParent
   card.innerHTML = "<i class='" + shapes[i] + "'</i>"; //Insert shapes into cards
   cardsParent.appendChild(card);
+
+  // Loop through each card to add event listeners
+    card.addEeventListener('click', showCard);
+    const showCard = function () {
+      card.classList.add('open' 'show')
+    }
+
 }
 /*
  * Display the cards on the page
@@ -51,18 +58,6 @@ function gameInit () {
   for (let i = 0; i < shuffleDeck.length; i++)
   deck.appendChild(shuffleDeck[i])
   shuffleDeck[i].classList.remove('show', 'open', 'match', 'disabled')
-}
-
-// Loop through each card to add event listeners
-for (let i = 0; i < cardDeck.length; i++) {
-  cardDeck[i].addEeventListener('click', showCard);
-};
-
-// Display the cards on the page
-let showCard = function (){
-  this.classList.toggle('open');
-  this.classList.toggle('show');
-  this.classList.toggle('disabled');
 }
 
 // Start game when page is reloaded
