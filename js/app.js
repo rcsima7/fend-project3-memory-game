@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 
- let cardDeck = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt",
+ const shapes = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt",
   "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
   "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
@@ -10,7 +10,15 @@ let cardsFlipped = [];
 let card = document.getElementsByClassName('card');
 let flippedCount = [];
 
+//Insert cards into this parent
+const cardsParent = document.querySelector('.deck');
 
+// Build the cards
+for (let i=0; 1 < shapes.length; i++) {
+  const card = document.createElement ('div');
+  card.classList.add('card'); //Choose a parent to insert these classes into: cardsParent
+  cardsParent.appendChild(card);
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -45,15 +53,15 @@ function gameInit () {
 }
 
 // Loop through each card to add event listeners
-for (let i=0; i < cardDeck.length; i++) {
+for (let i = 0; i < cardDeck.length; i++) {
   cardDeck[i].addEeventListener('click', showCard);
 };
 
 // Display the cards on the page
 let showCard = function (){
-  this.classlist.toggle('open');
-  this.classlist.toggle('show');
-  this.classlist.toggle('disabled');
+  this.classList.toggle('open');
+  this.classList.toggle('show');
+  this.classList.toggle('disabled');
 }
 
 // Start game when page is reloaded
