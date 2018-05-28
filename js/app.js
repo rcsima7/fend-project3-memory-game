@@ -17,6 +17,7 @@ const cardsParent = document.querySelector('.deck');
 for (let i=0; 1 < shapes.length; i++) {
   const card = document.createElement ('div');
   card.classList.add('card'); //Choose a parent to insert these classes into: cardsParent
+  card.innerHTML = "<i class='" + shapes[i] + "'</i>"; //Insert shapes into cards
   cardsParent.appendChild(card);
 }
 /*
