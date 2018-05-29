@@ -6,16 +6,15 @@
   "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
   "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
-let cardsFlipped = [];
-let card = document.getElementsByClassName('card');
+const cardsFlipped = [];
 let flippedCount = [];
 
 //Insert cards into this parent
 const cardsParent = document.querySelector('.deck');
 
 // Build the cards
-for (let i = 0; 1 < shapes.length; i++) {
-  const card = document.createElement ('div');
+for (let i = 0; i < shapes.length; i++) {
+  const card = document.createElement ('li');
   card.classList.add('card'); //Choose a parent to insert these classes into: cardsParent
   card.innerHTML = "<i class='" + shapes[i] + "'</i>"; //Insert shapes into cards
   cardsParent.appendChild(card);
