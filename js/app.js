@@ -22,7 +22,20 @@ for (let i = 0; i < shapes.length; i++) {
   // Loop through each card to add event listeners
     card.addEeventListener('click', showCard);
     const showCard = function () {
-      card.classList.add('open' 'show')
+
+      //1 card is already open
+      if(cardsFlipped.length === 1) {
+        //Push opened cards into cardsFlipped array
+        card.classList.add('open' 'show');
+        cardsFlipped.push(this); //This is the clicked card
+
+      //0 card is already open
+      } else {
+        //Push opened cards into cardsFlipped array
+        card.classList.add('open' 'show');
+        cardsFlipped.push(this); //This is the clicked card
+      }
+
     }
 
 }
