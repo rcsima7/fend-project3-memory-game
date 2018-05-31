@@ -33,7 +33,7 @@ for (let i = 0; i < shapes.length; i++) {
       if (this.innerHTML === cardsFlipped[0].innerHTML) { //this here is the 2nd card clicked. cardsFlipped0 is the first card clicked
           this.classList.add('match');
           cardsFlipped[0].classList.add('match');
-      }
+          cardsFlipped = []; //reset array after 2 cards have been pushed into it
 
       //0 card is already open
       } else {
