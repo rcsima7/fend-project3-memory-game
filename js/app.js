@@ -29,6 +29,12 @@ for (let i = 0; i < shapes.length; i++) {
         card.classList.add('open' 'show');
         cardsFlipped.push(this); //This is the clicked card
 
+      //Check is flipped cards match
+      if (this.innerHTML === cardsFlipped[0].innerHTML) { //this here is the 2nd card clicked. cardsFlipped0 is the first card clicked
+          this.classList.add('match');
+          cardsFlipped[0].classList.add('match');
+      }
+
       //0 card is already open
       } else {
         //Push opened cards into cardsFlipped array
