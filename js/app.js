@@ -6,8 +6,23 @@
   "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
   "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
-const cardsFlipped = [];
-let flippedCount = [];
+let cardsFlipped = [];
+let cardsMatched = [];
+
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
 
 //Insert cards into this parent
 const cardsParent = document.querySelector('.deck');
@@ -29,27 +44,34 @@ for (let i = 0; i < shapes.length; i++) {
         card.classList.add('open' 'show');
         cardsFlipped.push(this); //This is the clicked card
 
-      //Check is flipped cards match
-      if (this.innerHTML === cardsFlipped[0].innerHTML) { //this here is the 2nd card clicked. cardsFlipped0 is the first card clicked
-          //if cards match
-          this.classList.add('match');
-          cardsFlipped[0].classList.add('match');
-          cardsFlipped = []; //reset array after 2 cards have been pushed into it
+          //Check if flipped cards match
+          if (this.innerHTML === cardsFlipped[0].innerHTML) { //this here is the 2nd card clicked. cardsFlipped0 is the first card clicked
+            //if cards match
+            this.classList.add('match');
+            cardsFlipped[0].classList.add('match');
+            cardsFlipped = []; //reset array after 2 cards have been pushed into it
+            cardsMatched.push(this, cardsFlipped[0]);
 
-        } else {
-          //if cards don't match
-          this.classList.remove('open', 'show');
-          cardsFlipped[0].classList.remove('open', 'show');
-        }
+            } else {
+              //if cards don't match
+              this.classList.remove('open', 'show');
+              cardsFlipped[0].classList.remove('open', 'show');
+              cardsFlipped = [];
+            }
 
-      //0 card is already open
-      } else {
-        //Push opened cards into cardsFlipped array
-        card.classList.add('open' 'show');
-        cardsFlipped.push(this); //This is the clicked card
-      }
+          //0 card is already open
+          } else {
+            //Push opened cards into cardsFlipped array
+            card.classList.add('open' 'show');
+            cardsFlipped.push(this); //This is the clicked card
+          }
 
     }
+
+}
+
+//compare opened cards to shapes array, see if number of matched cards equals the original shapes
+function gameOver() {
 
 }
 /*
@@ -59,35 +81,7 @@ for (let i = 0; i < shapes.length; i++) {
  *   - add each card's HTML to the page
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
 // Shuffle and display cards on deck to start the game.
-
-let shuffleDeck = shuffle(cardDeck);
-let deck = document.querySelector("deck");
-
-function gameInit () {
-  for (let i = 0; i < shuffleDeck.length; i++)
-  deck.appendChild(shuffleDeck[i])
-  shuffleDeck[i].classList.remove('show', 'open', 'match', 'disabled')
-}
-
-// Start game when page is reloaded
-
-window.onload = gameInit();
 
 /*
  * set up the event listener for a card. If a card is clicked:
