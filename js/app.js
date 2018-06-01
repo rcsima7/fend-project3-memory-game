@@ -41,7 +41,7 @@ for (let i = 0; i < shapes.length; i++) {
       //1 card is already open
       if(cardsFlipped.length === 1) {
         //Push opened cards into cardsFlipped array
-        card.classList.add('open' 'show');
+        card.classList.add('open' 'show' 'prevented');
         cardsFlipped.push(this); //This is the clicked card
 
           //Check if flipped cards match
@@ -57,7 +57,7 @@ for (let i = 0; i < shapes.length; i++) {
               //delay closing cards by 400 miliseconds
               setTimeout(function() {
                 //if cards don't match
-                this.classList.remove('open', 'show');
+                this.classList.remove('open', 'show' 'prevented');
                 cardsFlipped[0].classList.remove('open', 'show');
               } 400);
 
