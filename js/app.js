@@ -72,7 +72,9 @@ for (let i = 0; i < shapes.length; i++) {
 
 //compare opened cards to shapes array, see if number of matched cards equals the original shapes
 function gameOver() {
-
+  if(cardsMatched.length === shapes.length) {
+    alert('CONGRATS!');
+  }
 }
 /*
  * Display the cards on the page
