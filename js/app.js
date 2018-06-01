@@ -51,6 +51,7 @@ for (let i = 0; i < shapes.length; i++) {
             cardsFlipped[0].classList.add('match');
             cardsFlipped = []; //reset array after 2 cards have been pushed into it
             cardsMatched.push(this, cardsFlipped[0]);
+            gameOver(); //To see if game is over
 
             } else {
               //if cards don't match
