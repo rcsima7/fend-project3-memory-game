@@ -54,9 +54,13 @@ for (let i = 0; i < shapes.length; i++) {
             gameOver(); //To see if game is over
 
             } else {
-              //if cards don't match
-              this.classList.remove('open', 'show');
-              cardsFlipped[0].classList.remove('open', 'show');
+              //delay closing cards by 400 miliseconds
+              setTimeout(function() {
+                //if cards don't match
+                this.classList.remove('open', 'show');
+                cardsFlipped[0].classList.remove('open', 'show');
+              } 400);
+
               cardsFlipped = [];
             }
 
