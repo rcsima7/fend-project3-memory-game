@@ -28,12 +28,20 @@ function shuffle(array) {
 const cardsParent = document.querySelector('.deck');
 
 // Build the cards
-for (let i = 0; i < shapes.length; i++) {
-  const card = document.createElement ('li');
-  card.classList.add('card'); //Choose a parent to insert these classes into: cardsParent
-  card.innerHTML = "<i class='" + shapes[i] + "'</i>"; //Insert shapes into cards
-  cardsParent.appendChild(card);
+function gameStart() {
+  for (let i = 0; i < shapes.length; i++) {
+    const card = document.createElement ('li');
+    card.classList.add('card'); //Choose a parent to insert these classes into: cardsParent
+    card.innerHTML = "<i class='" + shapes[i] + "'</i>"; //Insert shapes into cards
+    cardsParent.appendChild(card);
 
+    //Each card gets a click event
+    click(card);
+  }
+}
+
+//Click events
+function click (card) {
   // Loop through each card to add event listeners
     card.addEeventListener('click', showCard);
     const showCard = function () {
@@ -45,24 +53,7 @@ for (let i = 0; i < shapes.length; i++) {
         cardsFlipped.push(this); //This is the clicked card
 
           //Check if flipped cards match
-          if (this.innerHTML === cardsFlipped[0].innerHTML) { //this here is the 2nd card clicked. cardsFlipped0 is the first card clicked
-            //if cards match
-            this.classList.add('match');
-            cardsFlipped[0].classList.add('match');
-            cardsFlipped = []; //reset array after 2 cards have been pushed into it
-            cardsMatched.push(this, cardsFlipped[0]);
-            gameOver(); //To see if game is over
-
-            } else {
-              //delay closing cards by 400 miliseconds
-              setTimeout(function() {
-                //if cards don't match
-                this.classList.remove('open', 'show' 'prevented');
-                cardsFlipped[0].classList.remove('open', 'show');
-              } 400);
-
-              cardsFlipped = [];
-            }
+          checkMatch(this.innerHTML, cardsFlipped[0].innerHTML);
 
           //0 card is already open
           } else {
@@ -72,7 +63,31 @@ for (let i = 0; i < shapes.length; i++) {
           }
 
     }
+}
 
+
+//Checks if flipped cards are a match
+function checkMatch(this.innerHTML, cardsFlipped[0].innerHTML) {
+  if (this.innerHTML === cardsFlipped[0].innerHTML) { //this here is the 2nd card clicked. cardsFlipped0 is the first card clicked
+
+    //if cards match
+    this.classList.add('match');
+    cardsFlipped[0].classList.add('match');
+    cardsFlipped = []; //reset array after 2 cards have been pushed into it
+    cardsMatched.push(this, cardsFlipped[0]);
+    gameOver(); //To see if game is over
+
+    } else {
+      //delay closing cards by 400 miliseconds
+      setTimeout(function() {
+
+        //if cards don't match
+        this.classList.remove('open', 'show' 'prevented');
+        cardsFlipped[0].classList.remove('open', 'show' 'prevented');
+      } 400);
+
+      cardsFlipped = [];
+    }
 }
 
 //compare opened cards to shapes array, see if number of matched cards equals the original shapes
@@ -81,6 +96,23 @@ function gameOver() {
     alert('CONGRATS!');
   }
 }
+
+//start the game
+gameStart()
+
+//restart icon
+const restartIcon = document.querySelector('.restart');
+restartIcon.addEeventListener('click', function() {
+  //Remove every card
+  cardsParent.innerHTML = '';
+
+  //Add new cards with gameStart
+  gameStart();
+
+  //Reset all variables
+  cardsMatched = [];
+});
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
