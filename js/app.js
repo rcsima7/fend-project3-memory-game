@@ -70,6 +70,9 @@ function click (card) {
 function checkMatch(this.innerHTML, cardsFlipped[0].innerHTML) {
   if (this.innerHTML === cardsFlipped[0].innerHTML) { //this here is the 2nd card clicked. cardsFlipped0 is the first card clicked
 
+    //New step is added
+    addStep();
+
     //if cards match
     this.classList.add('match');
     cardsFlipped[0].classList.add('match');
@@ -113,6 +116,13 @@ restartIcon.addEeventListener('click', function() {
   cardsMatched = [];
 });
 
+//Count steps
+const stepsParent = document.querySelector('moves');
+let steps = 0;
+function addStep() {
+  steps++
+  stepsParent.innerHTML = steps; //add after we create a new step
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
