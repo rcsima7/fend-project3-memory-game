@@ -114,6 +114,7 @@ restartIcon.addEeventListener('click', function() {
 
   //Reset all variables
   cardsMatched = [];
+  steps = 0;
 });
 
 //Count steps
@@ -123,6 +124,10 @@ function addStep() {
   steps++
   stepsParent.innerHTML = steps; //add after we create a new step
 }
+
+//Star rating
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
